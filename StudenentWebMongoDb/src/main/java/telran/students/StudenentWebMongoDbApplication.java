@@ -1,4 +1,4 @@
-package telran.student;
+package telran.students;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
