@@ -1,6 +1,7 @@
 package telran.students.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -92,6 +93,18 @@ private StudentResponseDto studentToStudentResponseDto(Student student)
 	@Override
 	public List<Student> findByNameStartWith(String name) {
 		return studentRepository.findByNameRegex(name+".*");
+	}
+
+	@Override
+	public List <Student> findByNameAlefBet(String name) {
+		return studentRepository.findByAfterAlefBet(name).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<Student> getBestStudents(String exam, int score) {
+		return studentRepository.findByDynamicField(exam, score);
+		//return studentRepository.findAllBy().filter(s->s.getScores().containsKey(exam))
+				//.filter(s-> s.getScores().get(exam)>score).collect(Collectors.toList());
 	}
 
 }

@@ -1,9 +1,9 @@
 package telran.students.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -56,10 +56,20 @@ public class StudentController {
 	{
 		return studentService.addScore(id, score);
 	}
-	@GetMapping(StudentURI.Students+"/{name}")
+	@GetMapping(StudentURI.STUDENT+"/{name}")
 	public List<Student>getByName(@PathVariable String name)
 	{
 		return studentService.findByNameStartWith(name);
 	}
+	@GetMapping(StudentURI.Students+"/{name}")
+	public List<Student>getByAlefBet(@PathVariable String name)
+	{
+		return studentService.findByNameAlefBet(name);
+	}
+	@GetMapping(StudentURI.Students+"/{exam}/{score}")
+	List<Student>getBestStudents(String exam,int score)
 	
+	{
+	return studentService.getBestStudents(exam, score);	
+	}
 }
